@@ -1,20 +1,11 @@
-<div class="d-flex">
-    <form action="/meeps" method="post">
-        <div class="input-group mb-3">
-            <label for="meep" class="visually-hidden">Meep</label>
-            <input
-                class="form-control"
-                type="text"
-                name="meep"
-                id="meep"
-                placeholder="Username"
-                required>
-            <button class="btn btn-primary" type="submit">Add user</button>
-        </div>
-    </form>
-    <div>
-        <form>
-        <div class="input-group mb-3">
+<div class="d-flex align-items-center flex-wrap align-content-sm-end justify-content-sm-around h-15 pb-1">
+    <button class="btn btn-primary  ml-1 mr-1" id="addButton" type="submit">Add user</button>
+    <button class="btn btn-primary " id="updateButton" type="submit">Update user</button>
+    <button class="btn btn-primary " id="deleteButton" type="submit">Delete user</button>
+    <a href="/meeps" class="btn btn-primary" id="refreshButton">Refresh users</a>
+    
+    <form action="/meeps" method="GET">
+        <div class="input-group">
             <label class="visually-hidden">Search</label>
             <input
                 class="form-control"

@@ -9,12 +9,10 @@ router.get('/', async (req, res, next) => {
   .then(([rows, fields]) => {
     console.log(rows);
       if (rows.length > 0) {
-        
         res.render("profile.njk", {data: rows, token: req.session.loginToken})
       } else {
         req.session.error = "You are not logged in";
         res.redirect("/login");
-
       }
   })
   .catch(err => {

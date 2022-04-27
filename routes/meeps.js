@@ -11,8 +11,17 @@ const pool = require('../database');
 */
 
 router.get('/', async (req, res, next) => {
+    let query = 'SELECT * FROM meeps ORDER BY created_at DESC';
+    let search;
+    if (typeof req.query.search !== 'undefined') {
+        if(req.query.search.length > 0) {
+            console.log("The search query is = "+req.query.search);
+            search = '%'+req.query.search+'%';
+            query = 'SELECT * FROM meeps WHERE body LIKE ? ORDER BY created_at DESC';
+        }
+    }
     await pool.promise()
-        .query('SELECT * FROM meeps JOIN users WHERE user_id = users.id ORDER BY created_at DESC')
+        .query(query, [search])
         .then(([rows, fields]) => {
               res.render('meeps.njk', {
                 meeps: rows,

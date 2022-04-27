@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  height: 100%;
 }
 
 a {
@@ -37,12 +38,56 @@ a {
   margin: 0 1rem 0 0;
 }
 
+.pl-3 {
+  padding-left: 1rem;
+}
+
+.h-2r {
+  height: 2rem;
+}
+
 .h-10r {
   height: 10rem;
 }
 
+.h-5 {
+  height: 5%;
+}
+
+.h-10 {
+  height: 10%;
+}
+
+.h-15 {
+  height: 15%;
+}
+
+.h-80 {
+  height: 80%;
+}
+
+.h-85 {
+  height: 85%;
+}
+
+.w-10r {
+  width: 10rem;
+}
+
+.w-20 {
+  width: 20%;
+}
+
 .h-100vh {
   height: 100vh;
+}
+
+.fill {
+  width: 12.8px;
+}
+
+.columnbar {
+  width: calc(100% - 17px);
 }
 
 .fat-font {
@@ -51,6 +96,12 @@ a {
 
 .of-f {
   object-fit: scale-down;
+}
+
+.btn-disable {
+  user-select: none;
+  cursor: default;
+  background: rgba(148, 148, 148, 0.118);
 }
 
 .tiny-brand {
@@ -88,6 +139,24 @@ a {
 .meep-bottom {
   width: 100%;
   height: auto;
+}
+
+.sidepanel {
+  width: 30%;
+  height: 85%;
+  background-color: rgb(255, 255, 255);
+  box-shadow: -10px 3px 20px rgba(120, 120, 120, 0.247);
+  position: fixed;
+  right: 0;
+  top: 15vh;
+  z-index: 1;
+  display: none;
+  padding: 2rem;
+}
+
+.list-container {
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 .index-link {
