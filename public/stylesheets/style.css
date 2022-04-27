@@ -1,0 +1,107 @@
+body {
+  margin: 0;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.h-10rem-min {
+  height: 10rem;
+}
+
+.custom-text-body {
+  width: 20%;
+}
+
+.text-size-05rem {
+  font-size: 0.5rem;
+}
+
+.custom-bg-grey {
+  background: #767676;
+}
+
+.meep-nav {
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  top: 0;
+}
+
+.mt-5r {
+  margin-top: 5rem;
+}
+
+.mr-1r {
+  margin: 0 1rem 0 0;
+}
+
+.h-10r {
+  height: 10rem;
+}
+
+.h-100vh {
+  height: 100vh;
+}
+
+.fat-font {
+  font-size: 4rem;
+}
+
+.of-f {
+  object-fit: scale-down;
+}
+
+.tiny-brand {
+  width: 2rem;
+  height: 2rem;
+}
+
+.landing-top {
+  width: 100%;
+  height: 90vh;
+  background: rgba(122, 122, 122, 0.251);
+}
+
+.landing-bottom {
+  width: 100%;
+  height: 5vh;
+}
+
+.landing-left {
+  width: 50%;
+  height: 90vh;
+}
+
+.landing-right {
+  width: 50%;
+  height: 100vh;
+}
+
+.user-item {
+  width: 100%;
+  height: 2rem;
+  display: flex;
+}
+
+.meep-bottom {
+  width: 100%;
+  height: auto;
+}
+
+.index-link {
+  text-decoration: none;
+}
+
+.index-link:hover {
+  text-decoration: underline;
+}
+
+.hover-grey {
+  background: rgb(255, 255, 255);
+}
+
+.hover-grey:hover {
+  background: rgb(247, 247, 247);
+}

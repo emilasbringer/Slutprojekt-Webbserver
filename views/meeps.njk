@@ -1,0 +1,30 @@
+{% extends layout %}
+{% block  content %}
+<main class="container">
+    {% include 'components/taskform.njk' %}
+     <div>
+        <ul class="list-group">
+        {% for meep in meeps %}
+            <li class=" list-group-item justify-content-between hover-grey">
+                <div class="user-item">
+                    <div class="mr-1r">
+                        <input type="checkbox">
+                    </div>
+                    <div class="custom-text-body">
+                        {{meep.body}}
+                    </div>
+                    <div class="custom-text-body">
+                        070-123-4567
+                    </div>
+                    <div class="custom-text-body">
+                        2022-03-01
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</main>
+<script src="/javascripts/mark.js"></script>
+<script src="/javascripts/update-meep.js"></script>
+{% endblock %}
