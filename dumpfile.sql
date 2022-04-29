@@ -24,12 +24,14 @@ DROP TABLE IF EXISTS `meeps`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `meeps` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `body` varchar(140) DEFAULT NULL,
+  `body` varchar(140) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `user_id` int unsigned DEFAULT NULL,
+  `expiration_date` timestamp NULL DEFAULT NULL,
+  `phonenumber` varchar(12) DEFAULT ' ',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +40,7 @@ CREATE TABLE `meeps` (
 
 LOCK TABLES `meeps` WRITE;
 /*!40000 ALTER TABLE `meeps` DISABLE KEYS */;
-INSERT INTO `meeps` VALUES (10,'Gordon Pärenen','2022-03-23 11:38:10','2022-03-23 11:38:10',4),(11,'Gordon Pärenen 3','2022-03-23 11:42:19','2022-03-23 11:42:19',5),(12,'Gordon Pärenen 2','2022-03-23 11:42:21','2022-03-23 11:42:21',6),(17,'Gordon Pärenen 0','2022-03-28 08:15:36','2022-03-28 08:15:36',4),(68,'Gordon Pärenen 5','2022-04-04 09:04:55','2022-04-04 09:04:55',4),(69,'Gordon Pärenen 18','2022-04-04 09:15:06','2022-04-04 09:15:06',7),(70,'Jerker Sigge','2022-04-25 14:13:16','2022-04-25 14:13:16',NULL),(71,'Jerker Sigge','2022-04-25 14:13:25','2022-04-25 14:13:25',4),(72,'Teodor Daniel','2022-04-25 14:13:37','2022-04-25 14:13:37',4),(73,'Per Söderberg','2022-04-25 14:14:23','2022-04-25 14:14:23',4),(74,'Albin Svensson','2022-04-25 14:14:28','2022-04-25 14:14:28',4),(75,'Håkan Birch','2022-04-25 14:14:39','2022-04-25 14:14:39',4),(76,'Emanuel Jansson','2022-04-25 14:14:42','2022-04-25 14:14:42',4),(77,'Björn Karlsson','2022-04-25 14:14:45','2022-04-25 14:14:45',4),(78,'Andreas Eliasson','2022-04-25 14:14:48','2022-04-25 14:14:48',4),(79,'Sven Larsson','2022-04-25 14:14:52','2022-04-25 14:14:52',4),(80,'Claes Gunnarsson','2022-04-25 14:14:55','2022-04-25 14:14:55',4),(81,'John Gustafsson','2022-04-25 14:14:57','2022-04-25 14:14:57',4),(82,'Thomas Axelsson','2022-04-25 14:15:08','2022-04-25 14:15:08',4);
+INSERT INTO `meeps` VALUES (10,'Gordon Pärenen','2022-03-23 11:38:10','2022-03-23 11:38:10',4,NULL,' '),(11,'Gordon Pärenen 3','2022-03-23 11:42:19','2022-03-23 11:42:19',5,NULL,' '),(12,'Gordon Pärenen 2','2022-03-23 11:42:21','2022-03-23 11:42:21',6,NULL,' '),(17,'Gordon Pärenen 0','2022-03-28 08:15:36','2022-03-28 08:15:36',4,NULL,' '),(68,'Gordon Pärenen 5','2022-04-04 09:04:55','2022-04-04 09:04:55',4,NULL,' '),(69,'Gordon Pärenen 18','2022-04-04 09:15:06','2022-04-04 09:15:06',7,NULL,' '),(70,'Jerker Sigge','2022-04-25 14:13:16','2022-04-25 14:13:16',NULL,NULL,' '),(71,'Jerker Sigge','2022-04-25 14:13:25','2022-04-25 14:13:25',4,NULL,' '),(72,'Teodor Daniel','2022-04-25 14:13:37','2022-04-25 14:13:37',4,NULL,' '),(73,'Per Söderberg','2022-04-25 14:14:23','2022-04-25 14:14:23',4,NULL,' '),(74,'Albin Svensson','2022-04-25 14:14:28','2022-04-25 14:14:28',4,NULL,' '),(75,'Håkan Birch','2022-04-25 14:14:39','2022-04-25 14:14:39',4,NULL,' '),(76,'Emanuel Jansson','2022-04-25 14:14:42','2022-04-25 14:14:42',4,NULL,' '),(77,'Björn Karlsson','2022-04-25 14:14:45','2022-04-25 14:14:45',4,NULL,' '),(78,'Andreas Eliasson','2022-04-25 14:14:48','2022-04-25 14:14:48',4,NULL,' '),(79,'Sven Larsson','2022-04-25 14:14:52','2022-04-25 14:14:52',4,NULL,' '),(80,'Claes Gunnarsson','2022-04-25 14:14:55','2022-04-25 14:14:55',4,NULL,' '),(81,'John Gustafsson','2022-04-25 14:14:57','2022-04-25 14:14:57',4,NULL,' '),(82,'Thomas Axelsson','2022-04-25 14:15:08','2022-04-25 14:15:08',4,NULL,' '),(87,NULL,'2022-04-29 07:25:37','2022-04-29 07:25:37',NULL,NULL,' '),(88,NULL,'2022-04-29 07:25:57','2022-04-29 07:25:57',NULL,NULL,' '),(89,NULL,'2022-04-29 07:29:49','2022-04-29 07:29:49',NULL,NULL,' '),(90,NULL,'2022-04-29 07:29:56','2022-04-29 07:29:56',NULL,NULL,' '),(91,NULL,'2022-04-29 07:31:12','2022-04-29 07:31:12',NULL,NULL,' '),(92,NULL,'2022-04-29 07:34:30','2022-04-29 07:34:30',NULL,NULL,' '),(93,NULL,'2022-04-29 07:34:47','2022-04-29 07:34:47',NULL,NULL,' '),(94,NULL,'2022-04-29 07:34:55','2022-04-29 07:34:55',NULL,NULL,' '),(95,NULL,'2022-04-29 07:35:10','2022-04-29 07:35:10',NULL,NULL,' '),(96,NULL,'2022-04-29 07:35:37','2022-04-29 07:35:37',NULL,NULL,' '),(97,NULL,'2022-04-29 07:36:39','2022-04-29 07:36:39',NULL,NULL,' ');
 /*!40000 ALTER TABLE `meeps` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -76,4 +78,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-27 17:47:31
+-- Dump completed on 2022-04-29 19:35:03
