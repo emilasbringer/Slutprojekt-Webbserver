@@ -4,6 +4,8 @@ const updateUserButton = document.querySelector("#updateButton");
 const deleteUserButton = document.querySelector("#deleteButton");
 const refreshButton = document.querySelector("#refreshButton");
 const sidepanel = document.querySelector(".sidepanel");
+const mainpanel = document.querySelector(".mainpanel");
+const mainpanelCloseButton = document.querySelector("#mainpanel-closebutton");
 let itemSelected = false;
 let selectedItem;
 
@@ -15,7 +17,27 @@ for (let i = 0; i < elements.length; i++) {
     elements[i].firstElementChild.firstElementChild.firstElementChild.addEventListener("click", counterToggleBox);
 }
 
-refreshButton.addEventListener("click", )
+addUserButton.addEventListener("click", addUser);
+updateUserButton.addEventListener("click", updateUser);
+mainpanelCloseButton.addEventListener("click", closePanel);
+
+function closePanel() {
+    mainpanel.style.display = "none";
+}
+
+function updateUser() {
+    if(itemSelected) {
+        sidepanel.style.display = "none";
+        mainpanel.children[1].innerHTML = "Update user";
+        mainpanel.style.display = "block";
+    }
+}
+
+function addUser() {
+    sidepanel.style.display = "none";
+    mainpanel.children[1].innerHTML = "Add user";
+    mainpanel.style.display = "block";
+}
 
 function unselectAll() {
     for (let i = 0; i < elements.length; i++) {
@@ -38,10 +60,12 @@ function toggleBox(inputElement) {
     if (inputElement.firstElementChild.firstElementChild.firstElementChild.checked == true) {
         inputElement.firstElementChild.firstElementChild.firstElementChild.checked = false;
         sidepanel.style.display = "none";
+        itemSelected = false;
     } else { 
         inputElement.firstElementChild.firstElementChild.firstElementChild.checked = true;
         sidepanel.style.display = "block";
-        sidepanel.firstElementChild.firstElementChild.innerHTML = inputElement.firstElementChild.children[1].innerHTML
+        sidepanel.firstElementChild.firstElementChild.innerHTML = inputElement.firstElementChild.children[1].innerHTML;
+        itemSelected = true;
     }
 }
 
@@ -53,6 +77,7 @@ function selectItem() {
 }
 
 function toggleTaskformButtons() {
+    console.log("Itemselected = "+itemSelected);
     if (itemSelected) {
         updateUserButton.classList.remove("btn-disable");
         updateUserButton.classList.add("btn-primary");

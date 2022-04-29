@@ -41,6 +41,8 @@ router.get('/', async (req, res, next) => {
 });
 
 router.post('/', async (req, res, next) => {
+    console.log("OOOOOOOOOOOOOGA");
+    console.log(req);
     const meep = req.body.meep;
     const userid = req.session.userid;
     console.log("MEEP = " + meep);
