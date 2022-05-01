@@ -10,7 +10,7 @@
         <ul class="list-group">
         {% for meep in meeps %}
             <li class=" list-group-item justify-content-between hover-grey">
-                <div class="user-item">
+                <div class="user-item" id="{{meep.id}}">
                     <div class="mr-1r">
                         <input type="checkbox">
                     </div>
@@ -18,10 +18,10 @@
                         {{meep.body}}
                     </div>
                     <div class="custom-text-body">
-                        070-123-4567
+                        {{meep.phonenumber}}
                     </div>
                     <div class="custom-text-body">
-                        2022-03-01
+                        {{meep.expiration_date}}
                     </div>
                 </div>
             </li>

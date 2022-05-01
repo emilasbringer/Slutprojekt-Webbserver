@@ -3,7 +3,13 @@
     <button class="btn btn-primary " id="updateButton" type="submit">Update user</button>
     <button class="btn btn-primary " id="deleteButton" type="submit">Delete user</button>
     <a href="/meeps" class="btn btn-primary" id="refreshButton">Refresh users</a>
-    
+
+    <button class="btn btn-secondary dropdown-toggle bg-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Import/Export</button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" >Import CSV</a>
+        <a class="dropdown-item" >Export CSV</a>
+    </div>
+
     <form action="/meeps" method="GET">
         <div class="input-group">
             <label class="visually-hidden">Search</label>
