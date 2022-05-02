@@ -25,7 +25,7 @@ router.get('/', async (req, res, next) => {
         .then(([rows, fields]) => {
               res.render('meeps.njk', {
                 meeps: rows,
-                title: 'Meeper',
+                title: 'Database',
                 layout: 'layout.njk',
                 token: req.session.loginToken
               });
@@ -42,15 +42,15 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
     console.log("OOOOOOOOOOOOOGA");
-    console.log(req);
-    const meep = req.body.meep;
-    const userid = req.session.userid;
-    console.log("MEEP = " + meep);
-    console.log("USER ID = " + userid);
+    const username = req.body.name;
+    const phonenumber = req.body.phonenumber;
+    const expiration_date = req.body.date;
+    console.log("Username = " + username);
+    console.log("phonenumber = " + phonenumber);
+    console.log("expiration_date = " + expiration_date);
     await pool.promise()
-    .query('INSERT INTO meeps (body,user_id) VALUES (?,?)', [meep,userid])
+    .query('INSERT INTO meeps (body,phonenumber,expiration_date) VALUES (?,?,?)', [username,phonenumber,expiration_date])
     .then((response) => {
-        console.log(response);
         res.redirect("/meeps");
     })
     .catch(err => {
@@ -89,15 +89,15 @@ router.get('/:id/delete', async (req, res, next) => {
 
 router.post('/:id/update', async (req, res, next) => {
     const id = req.params.id;
-    const content = req.body.body;
+    const username = req.body.name;
+    const phonenumber = req.body.phonenumber;
+    const expiration_date = req.body.date;
 
-    res.json({id,content});
-    console.log(req.body.body);
+    console.log(id,username,phonenumber,expiration_date);
 
-    /*
     await pool
     .promise()
-    .query('UPDATE meeps SET body = "?" WHERE id = ?',[content,id])
+    .query('UPDATE meeps SET body = "?" WHERE id = ?',[username,id])
     .then(response => {
         res.redirect('/meeps');
     })
@@ -105,11 +105,11 @@ router.post('/:id/update', async (req, res, next) => {
         console.log(error);
         res.status(500).json({
             meep: {
-                error: 'Error getting meeps',
+                error: 'Error updating meep',
             },
         });
     });
-    */
+
 });
 
 module.exports = router;

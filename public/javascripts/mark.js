@@ -13,22 +13,33 @@ toggleTaskformButtons();
 
 for (let i = 0; i < elements.length; i++) {
     elements[i].addEventListener("click", selectItem);
-    elements[i].setAttribute('id', i);
     elements[i].firstElementChild.firstElementChild.firstElementChild.addEventListener("click", counterToggleBox);
+    elements[i].firstElementChild.children[3].innerHTML = mmddyyyyToyyyymmdd(elements[i].firstElementChild.children[3].innerHTML.substring(29,40));
 }
 
 addUserButton.addEventListener("click", addUser);
 updateUserButton.addEventListener("click", updateUser);
+deleteUserButton.addEventListener("click", deleteUser);
 mainpanelCloseButton.addEventListener("click", closePanel);
 
 function closePanel() {
     mainpanel.style.display = "none";
 }
 
+function deleteUser() {
+    if(itemSelected) {
+        window.location.href = "/meeps/"+ selectedItem +"/delete";
+    }
+}
+
 function updateUser() {
     if(itemSelected) {
         sidepanel.style.display = "none";
         mainpanel.children[1].innerHTML = "Update user";
+        mainpanel.lastElementChild.setAttribute("action", "/"+selectedItem+"/update");
+        mainpanel.lastElementChild.firstElementChild.children[0].value = document.getElementById(selectedItem).children[1].innerHTML.trim();
+        mainpanel.lastElementChild.firstElementChild.children[1].value = document.getElementById(selectedItem).children[2].innerHTML.trim();
+        mainpanel.lastElementChild.firstElementChild.children[2].value = document.getElementById(selectedItem).children[3].innerHTML;
         mainpanel.style.display = "block";
     }
 }
@@ -36,12 +47,17 @@ function updateUser() {
 function addUser() {
     sidepanel.style.display = "none";
     mainpanel.children[1].innerHTML = "Add user";
+    mainpanel.lastElementChild.setAttribute("action", "/meeps");
+    mainpanel.lastElementChild.firstElementChild.children[0].value = "";
+    mainpanel.lastElementChild.firstElementChild.children[1].value = "";
+    mainpanel.lastElementChild.firstElementChild.children[2].value = "";
     mainpanel.style.display = "block";
 }
 
-function unselectAll() {
+function unselectAllExeptCurrent(inputElement) {
     for (let i = 0; i < elements.length; i++) {
-        if(i != selectedItem) {
+        if (elements[i] == inputElement) {
+            console.log("unselecting");
             elements[i].firstElementChild.firstElementChild.firstElementChild.checked = false;
         }
     }
@@ -56,7 +72,6 @@ function counterToggleBox() {
 }
 
 function toggleBox(inputElement) {
-    console.log("toggling box");
     if (inputElement.firstElementChild.firstElementChild.firstElementChild.checked == true) {
         inputElement.firstElementChild.firstElementChild.firstElementChild.checked = false;
         sidepanel.style.display = "none";
@@ -70,14 +85,14 @@ function toggleBox(inputElement) {
 }
 
 function selectItem() {
-    selectedItem = this.id;
+    selectedItem = this.firstElementChild.id;
+    unselectAllExeptCurrent(this);
     toggleBox(this);
-    unselectAll();
-    toggleTaskformButtons();    
+    toggleTaskformButtons();
 }
 
 function toggleTaskformButtons() {
-    console.log("Itemselected = "+itemSelected);
+    console.log("Itemselected = "+ selectedItem);
     if (itemSelected) {
         updateUserButton.classList.remove("btn-disable");
         updateUserButton.classList.add("btn-primary");
@@ -90,4 +105,24 @@ function toggleTaskformButtons() {
         deleteUserButton.classList.add("btn-disable");
         deleteUserButton.classList.remove("btn-primary");
     }
+}
+
+
+function mmddyyyyToyyyymmdd (inputDate) {
+    let outputDate;
+    const  months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    let year = inputDate.substring(7,11);
+    let month = inputDate.substring(0,3);
+    let day = inputDate.substring(4,6);
+
+    month = months.indexOf(month)+1;
+
+    if (month.toString.length < 2) {
+        month = "0"+month;
+    }
+
+    outputDate = year+"-"+month+"-"+day;
+
+    return outputDate;
 }
