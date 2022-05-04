@@ -34,8 +34,16 @@ a {
   margin-top: 5rem;
 }
 
+.pt-5r {
+  padding-top: 5rem;
+}
+
 .mr-1r {
   margin: 0 1rem 0 0;
+}
+
+.mt-n5r {
+  margin-top: -5rem;
 }
 
 .pl-3 {
@@ -185,5 +193,13 @@ a {
 }
 
 .hover-grey:hover {
-  background: rgb(247, 247, 247);
+  background: rgb(235, 235, 235);
+}
+
+.hover-pointer {
+  cursor: pointer;
+}
+
+.hover-default {
+  cursor: default;
 }

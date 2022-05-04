@@ -11,13 +11,13 @@ const pool = require('../database');
 */
 
 router.get('/', async (req, res, next) => {
-    let query = 'SELECT * FROM meeps ORDER BY created_at DESC';
+    let query = 'SELECT * FROM meeps ORDER BY expiration_date ASC';
     let search;
     if (typeof req.query.search !== 'undefined') {
         if(req.query.search.length > 0) {
             console.log("The search query is = "+req.query.search);
             search = '%'+req.query.search+'%';
-            query = 'SELECT * FROM meeps WHERE body LIKE ? ORDER BY created_at DESC';
+            query = 'SELECT * FROM meeps WHERE body LIKE ? ORDER BY created_at ASC';
         }
     }
     await pool.promise()
@@ -97,7 +97,7 @@ router.post('/:id/update', async (req, res, next) => {
 
     await pool
     .promise()
-    .query('UPDATE meeps SET body = "?" WHERE id = ?',[username,id])
+    .query('UPDATE meeps SET body = ?, phonenumber = ?, expiration_date = ? WHERE id = ?',[username,phonenumber,expiration_date,id])
     .then(response => {
         res.redirect('/meeps');
     })
