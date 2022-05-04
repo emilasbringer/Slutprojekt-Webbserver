@@ -12,6 +12,8 @@ let correspondingDBID = [];
 let itemSelected = false;
 let selectedItem;
 
+exportToCSV();
+
 document.getElementById("layout").classList.remove("pt-5r");
 toggleTaskformButtons(); 
 getTimeDifferenceInDaysFromToday("2022-08-14");
@@ -157,4 +159,20 @@ function mmddyyyyToyyyymmdd (inputDate) {
     outputDate = year+"-"+month+"-"+day;
     
     return outputDate;
+}
+
+function exportToCSV() {
+    let dataArray = [];
+
+    for (let i = 0; i < elements.length; i++) {
+        dataArray[i] += elements[i].firstElementChild.children[1].innerHTML.trim() + ",";
+        dataArray[i] += elements[i].firstElementChild.children[2].innerHTML.trim() + ",";
+        dataArray[i] += elements[i].firstElementChild.children[3].innerHTML;
+
+        console.log(elements[i].firstElementChild.children[1].innerHTML.trim());
+        console.log(elements[i].firstElementChild.children[2].innerHTML.trim());
+        console.log(elements[i].firstElementChild.children[3].innerHTML.trim());
+    }
+
+    //console.log(dataArray);
 }
