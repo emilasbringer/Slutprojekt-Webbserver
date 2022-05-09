@@ -4,6 +4,8 @@ const addUserButton = document.querySelector("#addButton");
 const updateUserButton = document.querySelector("#updateButton");
 const deleteUserButton = document.querySelector("#deleteButton");
 const refreshButton = document.querySelector("#refreshButton");
+const exportButton = document.querySelector("#exportButton");
+const importButton = document.querySelector("#importButton");
 const addUpdateSubmitButton = document.querySelector("#mainpanel-submit");
 const sidepanel = document.querySelector(".sidepanel");
 const mainpanel = document.querySelector(".mainpanel");
@@ -12,7 +14,6 @@ let correspondingDBID = [];
 let itemSelected = false;
 let selectedItem;
 
-exportToCSV();
 
 document.getElementById("layout").classList.remove("pt-5r");
 toggleTaskformButtons(); 
@@ -33,6 +34,7 @@ addUserButton.addEventListener("click", addUser);
 updateUserButton.addEventListener("click", updateUser);
 deleteUserButton.addEventListener("click", deleteUser);
 mainpanelCloseButton.addEventListener("click", closePanel);
+exportButton.addEventListener("click", exportToCSV);
 
 
 function closePanel() {
@@ -162,17 +164,29 @@ function mmddyyyyToyyyymmdd (inputDate) {
 }
 
 function exportToCSV() {
-    let dataArray = [];
+    const dataColumns = ["name","phonenumber","expiration_date"];
+    let csvString = dataColumns + "\n";
 
     for (let i = 0; i < elements.length; i++) {
-        dataArray[i] += elements[i].firstElementChild.children[1].innerHTML.trim() + ",";
-        dataArray[i] += elements[i].firstElementChild.children[2].innerHTML.trim() + ",";
-        dataArray[i] += elements[i].firstElementChild.children[3].innerHTML;
-
-        console.log(elements[i].firstElementChild.children[1].innerHTML.trim());
-        console.log(elements[i].firstElementChild.children[2].innerHTML.trim());
-        console.log(elements[i].firstElementChild.children[3].innerHTML.trim());
+        csvString += elements[i].firstElementChild.children[1].innerHTML.trim() + "," 
+        + elements[i].firstElementChild.children[2].innerHTML.trim() + "," 
+        + elements[i].firstElementChild.children[3].innerHTML + "\n";
     }
+    
+    //for (let i = 0; i < dataArray.length; i++) {
+    //    dataArray[i] = dataArray[i].substring(9);
+    //}
 
-    //console.log(dataArray);
+    console.log(csvString);
+
+    let csv = csvString;
+    let downloadLink = document.createElement("a");
+    let blob = new Blob(["\ufeff", csv]);
+    let url = URL.createObjectURL(blob);
+    downloadLink.href = url;
+    downloadLink.download = "data.csv";
+
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
 }
