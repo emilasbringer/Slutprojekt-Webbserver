@@ -30,6 +30,7 @@ for (let i = 0; i < elements.length; i++) {
     elements[i].addEventListener("click", selectItem);
     elements[i].firstElementChild.firstElementChild.firstElementChild.addEventListener("click", counterToggleBox);
     elements[i].firstElementChild.children[3].innerHTML = mmddyyyyToyyyymmdd(elements[i].firstElementChild.children[3].innerHTML.substring(29,40));
+
     if (getTimeDifferenceInDaysFromToday(elements[i].firstElementChild.children[3].innerHTML) < 180 ) {
         elements[i].classList.add("bg-danger");
     }
@@ -38,6 +39,7 @@ for (let i = 0; i < elements.length; i++) {
 addUserButton.addEventListener("click", addUser);
 updateUserButton.addEventListener("click", updateUser);
 deleteUserButton.addEventListener("click", deleteUser);
+
 mainpanelCloseButton.addEventListener("click", closeMainpanel);
 importButton.addEventListener("click", importToCSV);
 exportButton.addEventListener("click", exportToCSV);
@@ -51,6 +53,7 @@ function showFile() {
 function closeUploadpanel() {
     uploadpanel.style.display = "none";
 }
+
 
 function closeMainpanel() {
     mainpanel.style.display = "none";
@@ -67,8 +70,10 @@ function updateUser() {
     if(itemSelected) {
         sidepanel.style.display = "none";
         mainpanel.children[1].innerHTML = "Update user";
+
         mainpanel.lastElementChild.lastElementChild.firstElementChild.innerHTML = "Update user";
         mainpanel.lastElementChild.setAttribute("action", "/meeps/"+selectedItem+"/update");
+
         mainpanel.lastElementChild.firstElementChild.children[0].value = document.getElementById(selectedItem).children[1].innerHTML.trim();
         mainpanel.lastElementChild.firstElementChild.children[1].value = document.getElementById(selectedItem).children[2].innerHTML.trim();
         mainpanel.lastElementChild.firstElementChild.children[2].value = document.getElementById(selectedItem).children[3].innerHTML;
@@ -86,6 +91,7 @@ function addUser() {
     mainpanel.lastElementChild.firstElementChild.children[2].value = "";
     mainpanel.style.display = "block";
 }
+
 
 function unselectAllExeptCurrent(id) {
     let current = correspondingDBID.indexOf(id)
@@ -122,7 +128,7 @@ function toggleBox(inputElement) {
 
 function selectItem() {
     selectedItem = this.firstElementChild.id;
-    unselectAllExeptCurrent(selectedItem);
+    unselectAllExeptCurrent(selectedItem);    
     toggleBox(this);
     toggleTaskformButtons();
 }
@@ -208,4 +214,5 @@ function exportToCSV() {
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
+
 }
