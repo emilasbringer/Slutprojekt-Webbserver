@@ -10,9 +10,14 @@ const addUpdateSubmitButton = document.querySelector("#mainpanel-submit");
 const sidepanel = document.querySelector(".sidepanel");
 const mainpanel = document.querySelector(".mainpanel");
 const mainpanelCloseButton = document.querySelector("#mainpanel-closebutton");
+const uploadpanel = document.querySelector("#uploadpanel");
+const uploadpanelCloseButton = document.querySelector("#uploadpanel-closebutton");
+const fileInputElement = document.querySelector("#fileInput");
+const uploadFileButton = document.querySelector("#uploadFileButton");
 let correspondingDBID = [];
 let itemSelected = false;
 let selectedItem;
+
 
 
 document.getElementById("layout").classList.remove("pt-5r");
@@ -33,11 +38,21 @@ for (let i = 0; i < elements.length; i++) {
 addUserButton.addEventListener("click", addUser);
 updateUserButton.addEventListener("click", updateUser);
 deleteUserButton.addEventListener("click", deleteUser);
-mainpanelCloseButton.addEventListener("click", closePanel);
+mainpanelCloseButton.addEventListener("click", closeMainpanel);
+importButton.addEventListener("click", importToCSV);
 exportButton.addEventListener("click", exportToCSV);
+uploadpanelCloseButton.addEventListener("click", closeUploadpanel);
+uploadFileButton.addEventListener("click", showFile);
 
+function showFile() {
+    console.log(fileInputElement);
+}
 
-function closePanel() {
+function closeUploadpanel() {
+    uploadpanel.style.display = "none";
+}
+
+function closeMainpanel() {
     mainpanel.style.display = "none";
 }
 
@@ -153,14 +168,18 @@ function mmddyyyyToyyyymmdd (inputDate) {
     let day = inputDate.substring(4,6);
     
     month = months.indexOf(month)+1;
-    
-    if (month.toString.length < 2) {
+
+    if (parseInt(month) < 10) {
         month = "0"+month;
     }
     
     outputDate = year+"-"+month+"-"+day;
     
     return outputDate;
+}
+
+function importToCSV() {
+    uploadpanel.style.display = "block";
 }
 
 function exportToCSV() {

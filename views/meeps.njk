@@ -5,8 +5,10 @@
     {% include 'components/sidepanel.njk' %}
     {% include 'components/mainpanel.njk' %}
     {% include 'components/columns.njk' %}
-
-     <div class="list-container h-80">
+    {% include 'components/uploadpanel.njk' %}
+    {% include 'components/uploadcompletepanel.njk' %}
+  
+     <div class="list-container h-80 custom-scrollbar">
         <ul class="list-group">
         {% for meep in meeps %}
             <li class=" list-group-item justify-content-between hover-grey hover-pointer">

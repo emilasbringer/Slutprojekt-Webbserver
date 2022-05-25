@@ -11,13 +11,14 @@ const pool = require('../database');
 */
 
 router.get('/', async (req, res, next) => {
-    let query = 'SELECT * FROM meeps ORDER BY expiration_date ASC';
+    console.log("Fileuploaded = "+req.session.fileuploaded)
+    let query = 'SELECT * FROM emlasr_admin ORDER BY expiration_date ASC';
     let search;
     if (typeof req.query.search !== 'undefined') {
         if(req.query.search.length > 0) {
             console.log("The search query is = "+req.query.search);
             search = '%'+req.query.search+'%';
-            query = 'SELECT * FROM meeps WHERE body LIKE ? ORDER BY created_at ASC';
+            query = 'SELECT * FROM emlasr_admin WHERE body LIKE ? ORDER BY created_at ASC';
         }
     }
     await pool.promise()
@@ -27,7 +28,8 @@ router.get('/', async (req, res, next) => {
                 meeps: rows,
                 title: 'Database',
                 layout: 'layout.njk',
-                token: req.session.loginToken
+                token: req.session.loginToken,
+                fileuploaded: req.session.fileuploaded
               });
         })
         .catch(err => {
@@ -49,7 +51,7 @@ router.post('/', async (req, res, next) => {
     console.log("phonenumber = " + phonenumber);
     console.log("expiration_date = " + expiration_date);
     await pool.promise()
-    .query('INSERT INTO meeps (body,phonenumber,expiration_date) VALUES (?,?,?)', [username,phonenumber,expiration_date])
+    .query('INSERT INTO emlasr_admin (body,phonenumber,expiration_date) VALUES (?,?,?)', [username,phonenumber,expiration_date])
     .then((response) => {
         res.redirect("/meeps");
     })
@@ -63,11 +65,33 @@ router.post('/', async (req, res, next) => {
     });
 });
 
+router.post('/upload', function(req, res) {
+    let sampleFile;
+    let uploadPath;
+  
+    if (!req.files || Object.keys(req.files).length === 0) {
+      return res.status(400).send('No files were uploaded.');
+    }
+  
+    // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+    sampleFile = req.files.sampleFile;
+    uploadPath = "/home/emilasbringer/code/slutprojekt-webbserver/public/images/uploads/" + sampleFile.name;
+  
+    // Use the mv() method to place the file somewhere on your server
+    sampleFile.mv(uploadPath, function(err) {
+      if (err)
+        return res.status(500).send(err);
+  
+      req.session.fileuploaded = true;
+      res.redirect('/meeps');
+    });
+  });
+
 router.get('/:id/delete', async (req, res, next) => {
     const id = req.params.id;
     await pool
         .promise()
-        .query('DELETE FROM meeps WHERE id = ?', [id])
+        .query('DELETE FROM emlasr_admin WHERE id = ?', [id])
         .then((response) => {
             if (response[0].affectedRows === 1) {
                 return res.redirect('/meeps');
@@ -97,7 +121,7 @@ router.post('/:id/update', async (req, res, next) => {
 
     await pool
     .promise()
-    .query('UPDATE meeps SET body = ?, phonenumber = ?, expiration_date = ? WHERE id = ?',[username,phonenumber,expiration_date,id])
+    .query('UPDATE emlasr_admin SET body = ?, phonenumber = ?, expiration_date = ? WHERE id = ?',[username,phonenumber,expiration_date,id])
     .then(response => {
         res.redirect('/meeps');
     })
