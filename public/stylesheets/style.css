@@ -34,8 +34,16 @@ a {
   margin-top: 5rem;
 }
 
+.pt-5r {
+  padding-top: 5rem;
+}
+
 .mr-1r {
   margin: 0 1rem 0 0;
+}
+
+.mt-n5r {
+  margin-top: -5rem;
 }
 
 .pl-3 {
@@ -88,6 +96,7 @@ a {
 
 .columnbar {
   width: calc(100% - 17px);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.238);
 }
 
 .fat-font {
@@ -141,6 +150,49 @@ a {
   height: auto;
 }
 
+.uploadpanel {
+  width: 30%;
+  height: 85%;
+  background-color: rgb(226, 226, 226);
+  box-shadow: 0px 0px 20px rgba(120, 120, 120, 0.581);
+  position: fixed;
+  left: 35%;
+  top: 10vh;
+  z-index: 2;
+  padding: 2rem;
+  display: none;
+}
+
+.upload-area {
+  width: 100%;
+  height: 80%;
+  border: 2px dashed black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-button {
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  background: #0d6efd;
+}
+
+.upload-button:hover {
+  background: #237bff;
+}
+
+.uploadcompletepanel {
+  width: 100%;
+  height: 100%;
+  background: red;
+  font-size: 10rem;
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 0;
+}
+
 .sidepanel {
   width: 30%;
   height: 85%;
@@ -170,6 +222,7 @@ a {
 .list-container {
   overflow: scroll;
   overflow-x: hidden;
+  z-index: -5;
 }
 
 .index-link {
@@ -185,5 +238,33 @@ a {
 }
 
 .hover-grey:hover {
-  background: rgb(247, 247, 247);
+  background: rgb(235, 235, 235);
+}
+
+.hover-pointer {
+  cursor: pointer;
+}
+
+.hover-default {
+  cursor: default;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #888; 
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgb(87, 87, 87); 
 }

@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const nunjucks = require('nunjucks');
 const session = require('express-session');
+const fileUpload = require('express-fileupload');
 const indexRouter = require('./routes/index');
 const meepRouter = require('./routes/meeps');
 const loginRouter = require('./routes/login');
@@ -36,6 +37,10 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   cookie: { sameSite: true }
+}));
+
+app.use(fileUpload({
+  limits: { fileSize: 50 * 1024 * 1024 },
 }));
 
 app.use('/', indexRouter);

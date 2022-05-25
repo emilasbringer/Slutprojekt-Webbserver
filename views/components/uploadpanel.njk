@@ -1,0 +1,13 @@
+<div class="uploadpanel" id="uploadpanel">
+    <div class="d-flex justify-content-xl-end" id="uploadpanel-closebutton"><div class="btn-close btn-danger"></div></div>
+    <form ref="uploadForm" id="uploadForm" action="http://localhost:3000/meeps/upload" method="post" encType="multipart/form-data" class="h-75">
+    <h1>Upload File</h1>
+    <div class="upload-area">
+        <input type="file" name="sampleFile" id="fileInput">
+        {#<label for="fileInput" class="upload-button">Upload CSV file</label>#}
+    </div>
+    <div class="w-100 d-flex justify-content-end"> 
+        <button type="submit" class="btn bg-primary" id="uploadFileButton" value="Upload!">Upload</div>
+    </div>
+    </form>
+</div>
