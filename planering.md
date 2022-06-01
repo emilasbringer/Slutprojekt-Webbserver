@@ -21,8 +21,8 @@ Importering och Exportering
 | Vecka | Måndag | Hur Gick det? | Onsdag   | Hur Gick det? | Fredag | Hur Gick det? |
 |-------|--------|---------------|----------|---------------|--------|---------------|
 | 17    |Planera |   Bra         |copy meeps| exemplariskt  | DB UI  |  Bra          |
-| 18    | -PROV- |      ---      |import/ex |bra början     |export  | Nästan klar   |
-| 19    |DB ++   | bra           |export CSV| Klar          |Imp CSV |               |
-| 20    |        |               |          |               |        |               |
-| 21    |        |               |          |               |        |               |
-| 22    |        |               |          |               |        |               |
+| 18    | -PROV- |      ---      |import/ex | bra början    |export  | Nästan klar   |
+| 19    |DB ++   | bra           |export CSV| Klar          |Imp CSV |  mindre bra   |
+| 20    |Fil POST| mindre bra    |Fil POST  |mindre bra     |Fil Post|      Bra      |
+| 21    |        |               |          |               | -Ledig-|               |
+| 22    |Docs    |               |          |               |        |               |

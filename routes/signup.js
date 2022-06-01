@@ -52,7 +52,7 @@ router.post('/', async (req, res, next) => {
         }
 
       } else {
-        req.session.error = "Password invalid";
+        req.session.error = "Password invalid, must contain uppercase,lowercase,numbers, and 8 chars long";
         res.redirect("/signup");
       }
     } else {
